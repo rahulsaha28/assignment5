@@ -1,0 +1,30 @@
+.btn-yellow{
+ background-color:#F06C4E;
+ color:white;
+}
+
+
+.nab-bg{
+    background-color:white;
+}
+
+#search-box{
+    width:30%;
+}
+
+.search-box{
+    background-color:#F8F7F5;
+    border:none;
+    color:#989898;
+}
+
+.check{
+    background-color:#F06C4E;
+    padding:.2rem;
+    color:white;
+}
+
+#add-property>li{
+ margin-bottom: .2rem;
+ list-style: none;
+}
