@@ -44,7 +44,12 @@ document.getElementById("meal-card").addEventListener("click", function (event) 
 
 
     let specificMealId = event.target.parentElement.parentElement.dataset.id; // get specific card id 
-    getSingleCardInformation(specificMealId); // request api for specific card
+    if(specificMealId != undefined){
+        
+      getSingleCardInformation(specificMealId); // request api for specific card  
+    }
+    
+    
 });
 
 // search by specific card id 
@@ -114,7 +119,7 @@ function getSearchMeal(url, mealData, searchValue) {
 
         mealData.searchMeal.forEach(meal => {
             mealCard.innerHTML += `<div class="col-md-3 col-sm-10" data-id=${meal.idMeal}>
-            <div class="card"><img src="${meal.strMealThumb}" alt="" class="card-img-top"></div>
+            <div class="card"><img src="${meal.strMealThumb}" alt="" class="card-img-top rounded img-thumbnail"></div>
             <div class="card-body d-flex justify-content-center">
                 <p>${meal.strMeal}</p>
             </div>
