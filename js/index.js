@@ -44,16 +44,16 @@ document.getElementById("meal-card").addEventListener("click", function (event) 
 
 
     let specificMealId = event.target.parentElement.parentElement.dataset.id; // get specific card id 
-    if(specificMealId != undefined){
-        
-      getSingleCardInformation(specificMealId); // request api for specific card  
+    if (specificMealId != undefined) {
+
+        getSingleCardInformation(specificMealId); // request api for specific card  
     }
-    
-    
+
+
 });
 
 // search by specific card id 
-function getSingleCardInformation(cardId) {
+const getSingleCardInformation = (cardId) => {
     let url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${cardId}`;
     apiCallForMeal(url, data => {
         mealData.specificMeal = data.meals[0];
@@ -64,7 +64,7 @@ function getSingleCardInformation(cardId) {
 
 
 // get ingredient
-function getIngredient(meal) {
+const getIngredient = (meal) => {
     let ingredientName = Object.entries(meal).filter(pro => pro[0].includes("strIngredient")).filter(pro => pro[1] != "").filter(pro => pro[1] != null); // get ingredient Name
     let ingredientValue = Object.entries(meal).filter(pro => pro[0].includes("strMeasure"))
         .filter(pro => pro[1] != "")
@@ -75,7 +75,7 @@ function getIngredient(meal) {
 }
 
 // update ui of a single card
-function updateSingleIngredient(ingredientName, ingredientValue) {
+const updateSingleIngredient = (ingredientName, ingredientValue) => {
     // create element
     document.getElementById("specific-card").innerHTML = `
     <div id="card-information" class="d-flex justify-content-center w-5 mt-3">
@@ -102,7 +102,7 @@ function updateSingleIngredient(ingredientName, ingredientValue) {
 
 
 // search related meal
-function getSearchMeal(url, mealData, searchValue) {
+const getSearchMeal = (url, mealData, searchValue) => {
 
     apiCallForMeal(url, data => {
 
@@ -136,7 +136,7 @@ function getSearchMeal(url, mealData, searchValue) {
 
 
 // create an f for api call
-function apiCallForMeal(url, callBack) {
+const apiCallForMeal = (url, callBack) => {
     fetch(url)
         .then(res => res.json())
         .then(data => callBack(data))
@@ -148,7 +148,7 @@ function apiCallForMeal(url, callBack) {
 
 
 // error message show function 
-function errorMessage(meals) {
+const errorMessage = (meals) => {
     if (meals.length == 0) {
         document.getElementById("error-message").innerHTML = `
              <div class="alert alert-danger" role="alert">
