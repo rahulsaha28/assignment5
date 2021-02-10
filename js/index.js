@@ -67,8 +67,8 @@ const getSingleCardInformation = (cardId) => {
 const getIngredient = (meal) => {
     let ingredientName = Object.entries(meal).filter(pro => pro[0].includes("strIngredient")).filter(pro => pro[1] != "").filter(pro => pro[1] != null); // get ingredient Name
     let ingredientValue = Object.entries(meal).filter(pro => pro[0].includes("strMeasure"))
-        .filter(pro => pro[1] != "")
-        .filter(pro => pro[1] != null); // get ingredient value
+                            .filter(pro => pro[1] != "")
+                            .filter(pro => pro[1] != null); // get ingredient value
 
     updateSingleIngredient(ingredientName, ingredientValue); // update ui for specific card
 
@@ -108,23 +108,25 @@ const getSearchMeal = (url, mealData, searchValue) => {
 
         mealData.allMeal = data.meals; // set the allMeal
 
+        
         mealData.searchMeal = mealData.allMeal.filter(currentMeal =>
             !currentMeal.strMeal.toLowerCase().search(searchValue)
         ); // filter the data
-
+        
         errorMessage(mealData.searchMeal) // set error message if present
 
         let mealCard = document.getElementById("meal-card");
         mealCard.innerHTML = ""; //reset the card
-
+        let tempMealCard  = "";
         mealData.searchMeal.forEach(meal => {
-            mealCard.innerHTML += `<div class="col-md-3 col-sm-10" data-id=${meal.idMeal}>
+            tempMealCard += `<div class="col-md-3 col-sm-10" data-id=${meal.idMeal}>
             <div class="card"><img src="${meal.strMealThumb}" alt="" class="card-img-top rounded img-thumbnail"></div>
             <div class="card-body d-flex justify-content-center">
                 <p>${meal.strMeal}</p>
             </div>
         </div>`
-        }); // add the card  using  the search 
+        }); 
+        mealCard.innerHTML = tempMealCard; // add the card  using  the search 
 
     });
 
